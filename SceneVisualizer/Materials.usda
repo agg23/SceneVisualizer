@@ -7,7 +7,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["GridMaterial", "Material", "Cube", "OffsetOcclusion"]
+    reorder nameChildren = ["GridMaterial", "Material", "RippleMaterial", "PlaneExperiment"]
     def Material "GridMaterial"
     {
         token outputs:mtlx:surface.connect = </Root/GridMaterial/PreviewSurface.outputs:out>
@@ -343,6 +343,272 @@ def Xform "Root"
             float2 ui:nodegraph:node:pos = (-617.77734, -167.8789)
             float2 ui:nodegraph:node:size = (161, 199)
             int ui:nodegraph:node:stackingOrder = 17
+        }
+    }
+
+    def Material "RippleMaterial"
+    {
+        prepend token outputs:mtlx:surface.connect = </Root/RippleMaterial/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex.connect = </Root/RippleMaterial/GeometryModifier.outputs:out>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (299.25, 99.5)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            color3f inputs:diffuseColor = (1, 0.18, 0.18) (
+                colorSpace = "lin_srgb"
+            )
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (53.023438, -74.39453)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 39
+        }
+
+        def Shader "Sin"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/RippleMaterial/Time.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-685.66406, -56.226562)
+            float2 ui:nodegraph:node:size = (116, 40)
+            int ui:nodegraph:node:stackingOrder = 55
+        }
+
+        def Shader "GeometryModifier"
+        {
+            uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+            color4f inputs:color
+            float3 inputs:modelPositionOffset.connect = </Root/RippleMaterial/CrossProduct.outputs:out>
+            float3 inputs:normal
+            half2 inputs:userAttributeHalf2_0
+            half2 inputs:userAttributeHalf2_1
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (64.44141, 225.21094)
+            float2 ui:nodegraph:node:size = (196.5, 325)
+            int ui:nodegraph:node:stackingOrder = 16
+        }
+
+        def Shader "CrossProduct"
+        {
+            uniform token info:id = "ND_crossproduct_vector3"
+            float3 inputs:in1.connect = </Root/RippleMaterial/Noise3D.outputs:out>
+            float3 inputs:in2.connect = </Root/RippleMaterial/Normal.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-204.19531, 74.03125)
+            float2 ui:nodegraph:node:size = (168.5, 53)
+            int ui:nodegraph:node:stackingOrder = 41
+        }
+
+        def Shader "Normal"
+        {
+            uniform token info:id = "ND_normal_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-377.01953, 160.96484)
+            float2 ui:nodegraph:node:size = (128.5, 40)
+            int ui:nodegraph:node:stackingOrder = 52
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-863.5703, -59.328125)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 36
+        }
+
+        def Shader "Position"
+        {
+            uniform token info:id = "ND_position_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-699.7578, 124.09766)
+            float2 ui:nodegraph:node:size = (133.5, 40)
+            int ui:nodegraph:node:stackingOrder = 596
+        }
+
+        def Shader "Noise3D"
+        {
+            uniform token info:id = "ND_noise3d_vector3FA"
+            float inputs:amplitude = 0.1
+            float inputs:amplitude.connect = None
+            float inputs:pivot.connect = None
+            float3 inputs:position.connect = </Root/RippleMaterial/Add.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-440.40625, 24.746094)
+            float2 ui:nodegraph:node:size = (105, 145)
+            int ui:nodegraph:node:stackingOrder = 603
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:amplitude"]
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/RippleMaterial/Sin.outputs:out>
+            float inputs:in2 = 0.1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-586.46875, -20.582031)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 57
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out", "inputs:in2"]
+        }
+
+        def Shader "Time_1"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1128.1953, 146.6836)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 607
+        }
+
+        def Shader "Position_1"
+        {
+            uniform token info:id = "ND_position_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-894.47266, 305.1289)
+            float2 ui:nodegraph:node:size = (146, 53)
+            int ui:nodegraph:node:stackingOrder = 599
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_vector3"
+            float3 inputs:in1.connect = </Root/RippleMaterial/Combine3.outputs:out>
+            float3 inputs:in2.connect = </Root/RippleMaterial/Position_1.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-674.3125, 243.03516)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 601
+        }
+
+        def Shader "Combine3"
+        {
+            uniform token info:id = "ND_combine3_vector3"
+            float inputs:in1.connect = </Root/RippleMaterial/Divide.outputs:out>
+            float inputs:in2.connect = </Root/RippleMaterial/Divide.outputs:out>
+            float inputs:in3.connect = </Root/RippleMaterial/Divide.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-848.5, 154.08594)
+            float2 ui:nodegraph:node:size = (145, 54)
+            int ui:nodegraph:node:stackingOrder = 611
+        }
+
+        def Shader "Divide"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1.connect = </Root/RippleMaterial/Time_1.outputs:out>
+            float inputs:in2 = 4
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-995.51953, 150.4961)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 616
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in2"]
+        }
+    }
+
+    def Material "PlaneExperiment"
+    {
+        prepend token outputs:mtlx:surface.connect = </Root/PlaneExperiment/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex.connect = </Root/PlaneExperiment/GeometryModifier.outputs:out>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (299.25, 99.5)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (45.621094, -66.30469)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 2
+        }
+
+        def Shader "GeometryModifier"
+        {
+            uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+            color4f inputs:color
+            float3 inputs:modelPositionOffset.connect = </Root/PlaneExperiment/Combine3.outputs:out>
+            float3 inputs:normal
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (44.777344, 219.03906)
+            float2 ui:nodegraph:node:size = (196.5, 325)
+            int ui:nodegraph:node:stackingOrder = 6
+        }
+
+        def Shader "Noise2D"
+        {
+            uniform token info:id = "ND_noise2d_vector3FA"
+            float inputs:amplitude
+            float inputs:pivot
+            float2 inputs:texcoord.connect = </Root/PlaneExperiment/Add.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-549.2969, -69.75391)
+            float2 ui:nodegraph:node:size = (148.5, 145)
+            int ui:nodegraph:node:stackingOrder = 26
+        }
+
+        def Shader "Separate3"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </Root/PlaneExperiment/Noise2D.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (-357.57812, 19.238281)
+            float2 ui:nodegraph:node:size = (115.5, 145)
+            int ui:nodegraph:node:stackingOrder = 18
+        }
+
+        def Shader "Combine3"
+        {
+            uniform token info:id = "ND_combine3_vector3"
+            float inputs:in1
+            float inputs:in2.connect = </Root/PlaneExperiment/Separate3.outputs:outy>
+            float inputs:in3.connect = None
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-178.84766, 94.82031)
+            float2 ui:nodegraph:node:size = (145, 54)
+            int ui:nodegraph:node:stackingOrder = 19
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1003.47266, -91.01953)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 591
+        }
+
+        def Shader "Combine2"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/PlaneExperiment/Time.outputs:out>
+            float inputs:in2.connect = </Root/PlaneExperiment/Time.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-800.40625, 9.09375)
+            float2 ui:nodegraph:node:size = (144.5, 53)
+            int ui:nodegraph:node:stackingOrder = 591
+        }
+
+        def Shader "Texcoord"
+        {
+            uniform token info:id = "ND_texcoord_vector2"
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-914.3008, 110.734375)
+            float2 ui:nodegraph:node:size = (180.5, 53)
+            int ui:nodegraph:node:stackingOrder = 591
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/PlaneExperiment/Combine2.outputs:out>
+            float2 inputs:in2.connect = </Root/PlaneExperiment/Texcoord.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-684.4961, 58.121094)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 591
         }
     }
 }

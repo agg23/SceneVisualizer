@@ -39,7 +39,7 @@ import ARKit
         }
 
         do {
-            self.activeShaderMaterial = try await ShaderGraphMaterial(named: "/Root/Material", from: "Materials")
+            self.activeShaderMaterial = try await ShaderGraphMaterial(named: "/Root/RippleMaterial", from: "Materials")
         } catch {
             print(error)
         }
