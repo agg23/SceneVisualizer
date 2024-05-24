@@ -13,6 +13,9 @@
 		666443672C00EAF200EEF8C5 /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443662C00EAF200EEF8C5 /* ImmersiveView.swift */; };
 		666443692C00EAF300EEF8C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666443682C00EAF300EEF8C5 /* Assets.xcassets */; };
 		6664436C2C00EAF300EEF8C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6664436B2C00EAF300EEF8C5 /* Preview Assets.xcassets */; };
+		666443752C00EB2500EEF8C5 /* ARKitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443742C00EB2500EEF8C5 /* ARKitModel.swift */; };
+		666443782C00F26A00EEF8C5 /* GeometrySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443772C00F26A00EEF8C5 /* GeometrySource.swift */; };
+		6664437A2C00F77C00EEF8C5 /* Materials.usda in Resources */ = {isa = PBXBuildFile; fileRef = 666443792C00F77C00EEF8C5 /* Materials.usda */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		666443682C00EAF300EEF8C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6664436B2C00EAF300EEF8C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6664436D2C00EAF300EEF8C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		666443742C00EB2500EEF8C5 /* ARKitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitModel.swift; sourceTree = "<group>"; };
+		666443772C00F26A00EEF8C5 /* GeometrySource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometrySource.swift; sourceTree = "<group>"; };
+		666443792C00F77C00EEF8C5 /* Materials.usda */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Materials.usda; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +64,12 @@
 		6664435D2C00EAF200EEF8C5 /* SceneVisualizer */ = {
 			isa = PBXGroup;
 			children = (
+				666443732C00EB1000EEF8C5 /* Models */,
+				666443762C00F23200EEF8C5 /* Extensions */,
 				666443622C00EAF200EEF8C5 /* SceneVisualizerApp.swift */,
 				666443642C00EAF200EEF8C5 /* ContentView.swift */,
 				666443662C00EAF200EEF8C5 /* ImmersiveView.swift */,
+				666443792C00F77C00EEF8C5 /* Materials.usda */,
 				666443682C00EAF300EEF8C5 /* Assets.xcassets */,
 				6664436D2C00EAF300EEF8C5 /* Info.plist */,
 				6664436A2C00EAF300EEF8C5 /* Preview Content */,
@@ -82,6 +91,22 @@
 				6664436B2C00EAF300EEF8C5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		666443732C00EB1000EEF8C5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				666443742C00EB2500EEF8C5 /* ARKitModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		666443762C00F23200EEF8C5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				666443772C00F26A00EEF8C5 /* GeometrySource.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +170,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6664437A2C00F77C00EEF8C5 /* Materials.usda in Resources */,
 				6664436C2C00EAF300EEF8C5 /* Preview Assets.xcassets in Resources */,
 				666443692C00EAF300EEF8C5 /* Assets.xcassets in Resources */,
 			);
@@ -159,7 +185,9 @@
 			files = (
 				666443652C00EAF200EEF8C5 /* ContentView.swift in Sources */,
 				666443632C00EAF200EEF8C5 /* SceneVisualizerApp.swift in Sources */,
+				666443782C00F26A00EEF8C5 /* GeometrySource.swift in Sources */,
 				666443672C00EAF200EEF8C5 /* ImmersiveView.swift in Sources */,
+				666443752C00EB2500EEF8C5 /* ARKitModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
