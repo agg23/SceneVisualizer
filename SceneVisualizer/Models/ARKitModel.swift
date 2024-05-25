@@ -74,8 +74,7 @@ import ARKit
 
         switch update.event {
         case .added:
-            let primaryMesh = try! generateMesh(from: meshAnchor.geometry)
-            let occlusionMesh = try! generateMesh(from: meshAnchor.geometry, with: { vertex, normal in -0.01 * normal + vertex } )
+            let (primaryMesh, occlusionMesh) = try! self.generateMeshes(from: meshAnchor.geometry)
 
             let primaryEntity = ModelEntity(mesh: primaryMesh, materials: [self.material])
             // SimpleMaterial is provided as for some reason the occlusion doesn't work without it
@@ -102,6 +101,11 @@ import ARKit
             pair.primaryEntity.transform = transform
             pair.occlusionEntity.transform = transform
 
+            let (primaryMesh, occlusionMesh) = try! self.generateMeshes(from: meshAnchor.geometry)
+
+            pair.primaryEntity.model?.mesh = primaryMesh
+            pair.occlusionEntity.model?.mesh = occlusionMesh
+
             // Collision
 //            pair.primaryEntity.collision?.shapes = [shape]
 
@@ -115,8 +119,17 @@ import ARKit
         }
     }
 
+    @MainActor
+    func generateMeshes(from geometry: MeshAnchor.Geometry) throws -> (MeshResource, MeshResource) {
+        let primaryMesh = try generateMesh(from: geometry)
+        let occlusionMesh = try generateMesh(from: geometry, with: { vertex, normal in -0.01 * normal + vertex } )
+
+        return (primaryMesh, occlusionMesh)
+    }
+
     // Data extraction derived from https://github.com/XRealityZone/what-vision-os-can-do/blob/3a731b5645f1c509689637e66ee96693b2fa2da7/WhatVisionOSCanDo/ShowCase/WorldScening/WorldSceningTrackingModel.swift
-    @MainActor func generateMesh(from geometry: MeshAnchor.Geometry, with vertexTransform: ((_ vertex: SIMD3<Float>, _ normal: SIMD3<Float>) -> SIMD3<Float>)? = nil) throws -> MeshResource {
+    @MainActor
+    func generateMesh(from geometry: MeshAnchor.Geometry, with vertexTransform: ((_ vertex: SIMD3<Float>, _ normal: SIMD3<Float>) -> SIMD3<Float>)? = nil) throws -> MeshResource {
         var desc = MeshDescriptor()
         let vertices = geometry.vertices.asSIMD3(ofType: Float.self)
         let normalValues = geometry.normals.asSIMD3(ofType: Float.self)
