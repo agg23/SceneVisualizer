@@ -20,6 +20,7 @@ import ARKit
     private var material: Material {
         get {
             if var material = self.activeShaderMaterial as? ShaderGraphMaterial {
+                // Enable displaying wireframe
                 material.triangleFillMode = .lines
 
                 return material
@@ -39,7 +40,7 @@ import ARKit
         }
 
         do {
-            self.activeShaderMaterial = try await ShaderGraphMaterial(named: "/Root/RippleMaterial", from: "Materials")
+            self.activeShaderMaterial = try await ShaderGraphMaterial(named: "/Root/ProximityMaterial", from: "Materials")
         } catch {
             print(error)
         }
