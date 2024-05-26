@@ -33,6 +33,8 @@ import ARKit
         }
     }
 
+    private var cachedSettings: RealityKitModel?
+
     func start() async {
         guard SceneReconstructionProvider.isSupported else {
             print("SceneReconstructionProvider not supported.")
@@ -55,7 +57,7 @@ import ARKit
                     return
                 }
 
-                print("Anchor update: \(update)")
+//                print("Anchor update: \(update)")
                 await processMeshAnchorUpdate(update)
             }
         } catch {
@@ -63,8 +65,42 @@ import ARKit
         }
     }
 
+    func updateScene(material: Material) {
+        self.activeShaderMaterial = material
+
+        for pair in self.meshEntities.values {
+            pair.primaryEntity.model?.materials = [material]
+        }
+    }
+
+    func updateProximityMaterialProperties(_ model: RealityKitModel) {
+        guard var material = self.activeShaderMaterial as? ShaderGraphMaterial, material.name == "ProximityMaterial" else {
+            print("Incorrect material")
+            return
+        }
+
+        self.cachedSettings = model
+
+        do {
+            if model.wireframe {
+                material.triangleFillMode = .lines
+            }
+
+            try material.setParameter(name: "Ripple", value: .bool(model.ripple))
+
+            try material.setParameter(name: "UseCustomColor", value: .bool(model.enableMeshColor))
+            try material.setParameter(name: "CustomColor", value: .color(model.meshColor.resolve(in: .init()).cgColor))
+        } catch {
+            print(error)
+        }
+
+        for pair in self.meshEntities.values {
+            pair.primaryEntity.model?.materials = [material]
+        }
+    }
+
     @MainActor
-    func processMeshAnchorUpdate(_ update: AnchorUpdate<MeshAnchor>) async {
+    private func processMeshAnchorUpdate(_ update: AnchorUpdate<MeshAnchor>) async {
         let meshAnchor = update.anchor
 
         // Used for collision only, so not used here
@@ -93,6 +129,10 @@ import ARKit
             self.entity.addChild(primaryEntity)
             self.entity.addChild(occlusionEntity)
 
+            if let cachedSettings = self.cachedSettings {
+                self.updateProximityMaterialProperties(cachedSettings)
+            }
+
         case .updated:
             guard let pair = self.meshEntities[meshAnchor.id] else {
                 return
@@ -120,7 +160,7 @@ import ARKit
     }
 
     @MainActor
-    func generateMeshes(from geometry: MeshAnchor.Geometry) throws -> (MeshResource, MeshResource) {
+    private func generateMeshes(from geometry: MeshAnchor.Geometry) throws -> (MeshResource, MeshResource) {
         let primaryMesh = try generateMesh(from: geometry)
         let occlusionMesh = try generateMesh(from: geometry, with: { vertex, normal in -0.01 * normal + vertex } )
 
@@ -129,7 +169,7 @@ import ARKit
 
     // Data extraction derived from https://github.com/XRealityZone/what-vision-os-can-do/blob/3a731b5645f1c509689637e66ee96693b2fa2da7/WhatVisionOSCanDo/ShowCase/WorldScening/WorldSceningTrackingModel.swift
     @MainActor
-    func generateMesh(from geometry: MeshAnchor.Geometry, with vertexTransform: ((_ vertex: SIMD3<Float>, _ normal: SIMD3<Float>) -> SIMD3<Float>)? = nil) throws -> MeshResource {
+    private func generateMesh(from geometry: MeshAnchor.Geometry, with vertexTransform: ((_ vertex: SIMD3<Float>, _ normal: SIMD3<Float>) -> SIMD3<Float>)? = nil) throws -> MeshResource {
         var desc = MeshDescriptor()
         let vertices = geometry.vertices.asSIMD3(ofType: Float.self)
         let normalValues = geometry.normals.asSIMD3(ofType: Float.self)

@@ -7,22 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		666443612C00EAF200EEF8C5 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 666443602C00EAF200EEF8C5 /* RealityKitContent */; };
 		666443632C00EAF200EEF8C5 /* SceneVisualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443622C00EAF200EEF8C5 /* SceneVisualizerApp.swift */; };
-		666443652C00EAF200EEF8C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443642C00EAF200EEF8C5 /* ContentView.swift */; };
 		666443672C00EAF200EEF8C5 /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443662C00EAF200EEF8C5 /* ImmersiveView.swift */; };
 		666443692C00EAF300EEF8C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666443682C00EAF300EEF8C5 /* Assets.xcassets */; };
 		6664436C2C00EAF300EEF8C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6664436B2C00EAF300EEF8C5 /* Preview Assets.xcassets */; };
 		666443752C00EB2500EEF8C5 /* ARKitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443742C00EB2500EEF8C5 /* ARKitModel.swift */; };
 		666443782C00F26A00EEF8C5 /* GeometrySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443772C00F26A00EEF8C5 /* GeometrySource.swift */; };
 		6664437A2C00F77C00EEF8C5 /* Materials.usda in Resources */ = {isa = PBXBuildFile; fileRef = 666443792C00F77C00EEF8C5 /* Materials.usda */; };
+		6664437C2C02558600EEF8C5 /* WristSettingsTriggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664437B2C02558600EEF8C5 /* WristSettingsTriggerView.swift */; };
+		6664437F2C02561300EEF8C5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664437E2C02561300EEF8C5 /* SettingsView.swift */; };
+		666443812C02569F00EEF8C5 /* RealityKitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443802C02569F00EEF8C5 /* RealityKitModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6664435B2C00EAF200EEF8C5 /* SceneVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SceneVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6664435F2C00EAF200EEF8C5 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		666443622C00EAF200EEF8C5 /* SceneVisualizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneVisualizerApp.swift; sourceTree = "<group>"; };
-		666443642C00EAF200EEF8C5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		666443662C00EAF200EEF8C5 /* ImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveView.swift; sourceTree = "<group>"; };
 		666443682C00EAF300EEF8C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6664436B2C00EAF300EEF8C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -30,6 +29,9 @@
 		666443742C00EB2500EEF8C5 /* ARKitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitModel.swift; sourceTree = "<group>"; };
 		666443772C00F26A00EEF8C5 /* GeometrySource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometrySource.swift; sourceTree = "<group>"; };
 		666443792C00F77C00EEF8C5 /* Materials.usda */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Materials.usda; sourceTree = "<group>"; };
+		6664437B2C02558600EEF8C5 /* WristSettingsTriggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WristSettingsTriggerView.swift; sourceTree = "<group>"; };
+		6664437E2C02561300EEF8C5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		666443802C02569F00EEF8C5 /* RealityKitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealityKitModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				666443612C00EAF200EEF8C5 /* RealityKitContent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,11 +65,11 @@
 		6664435D2C00EAF200EEF8C5 /* SceneVisualizer */ = {
 			isa = PBXGroup;
 			children = (
-				666443732C00EB1000EEF8C5 /* Models */,
 				666443762C00F23200EEF8C5 /* Extensions */,
-				666443622C00EAF200EEF8C5 /* SceneVisualizerApp.swift */,
-				666443642C00EAF200EEF8C5 /* ContentView.swift */,
+				666443732C00EB1000EEF8C5 /* Models */,
+				6664437D2C02558E00EEF8C5 /* Views */,
 				666443662C00EAF200EEF8C5 /* ImmersiveView.swift */,
+				666443622C00EAF200EEF8C5 /* SceneVisualizerApp.swift */,
 				666443792C00F77C00EEF8C5 /* Materials.usda */,
 				666443682C00EAF300EEF8C5 /* Assets.xcassets */,
 				6664436D2C00EAF300EEF8C5 /* Info.plist */,
@@ -80,7 +81,6 @@
 		6664435E2C00EAF200EEF8C5 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				6664435F2C00EAF200EEF8C5 /* RealityKitContent */,
 			);
 			path = Packages;
 			sourceTree = "<group>";
@@ -97,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				666443742C00EB2500EEF8C5 /* ARKitModel.swift */,
+				666443802C02569F00EEF8C5 /* RealityKitModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -107,6 +108,15 @@
 				666443772C00F26A00EEF8C5 /* GeometrySource.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6664437D2C02558E00EEF8C5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6664437B2C02558600EEF8C5 /* WristSettingsTriggerView.swift */,
+				6664437E2C02561300EEF8C5 /* SettingsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +136,6 @@
 			);
 			name = SceneVisualizer;
 			packageProductDependencies = (
-				666443602C00EAF200EEF8C5 /* RealityKitContent */,
 			);
 			productName = SceneVisualizer;
 			productReference = 6664435B2C00EAF200EEF8C5 /* SceneVisualizer.app */;
@@ -183,10 +192,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				666443652C00EAF200EEF8C5 /* ContentView.swift in Sources */,
+				6664437F2C02561300EEF8C5 /* SettingsView.swift in Sources */,
+				666443812C02569F00EEF8C5 /* RealityKitModel.swift in Sources */,
 				666443632C00EAF200EEF8C5 /* SceneVisualizerApp.swift in Sources */,
 				666443782C00F26A00EEF8C5 /* GeometrySource.swift in Sources */,
 				666443672C00EAF200EEF8C5 /* ImmersiveView.swift in Sources */,
+				6664437C2C02558600EEF8C5 /* WristSettingsTriggerView.swift in Sources */,
 				666443752C00EB2500EEF8C5 /* ARKitModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,13 +398,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		666443602C00EAF200EEF8C5 /* RealityKitContent */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RealityKitContent;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 666443532C00EAF200EEF8C5 /* Project object */;
 }
