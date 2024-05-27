@@ -12,6 +12,7 @@ struct ImmersiveView: View {
     @Environment(\.dismissWindow) private var dismissWindow
 
     @State private var model = ARKitModel()
+    @State private var wristAnchor: AnchorEntity?
 
     @Binding var realityKitModel: RealityKitModel
 
@@ -19,38 +20,40 @@ struct ImmersiveView: View {
         RealityView { content, attachments in
             content.add(self.model.entity)
 
-            guard let attachment = attachments.entity(for: "window") else {
-                print("Could not find attachment")
-                return
-            }
-
-            let anchor = AnchorEntity(.hand(.left, location: .wrist), trackingMode: .continuous)
-            var transform = Transform()
-            // Place window above wrist
-            transform.translation.y = 0.1
-            anchor.transform = transform
-
-            anchor.addChild(attachment)
-
-            content.add(anchor)
-
-//            content.add(ModelEntity(mesh: .generateBox(size: 2), materials: [SimpleMaterial(color: .blue, isMetallic: false)]))
+            self.createSettingsAnchor(content: content, attachments: attachments)
         } update: { content, attachments in
+            self.wristAnchor?.removeFromParent()
 
+            self.createSettingsAnchor(content: content, attachments: attachments)
         } attachments: {
             Attachment(id: "window") {
                 WristSettingsTriggerView()
             }
         }
         .task {
-            await self.model.start()
+            await self.model.start(self.realityKitModel)
         }
         .onAppear {
-            self.realityKitModel.arModel = model
+            self.realityKitModel.arModel = self.model
         }
-//        .onAppear {
-//            self.dismissWindow(id: "main")
-//        }
+    }
+
+    func createSettingsAnchor(content: RealityViewContent, attachments: RealityViewAttachments) {
+        guard let attachment = attachments.entity(for: "window") else {
+            print("Could not find attachment")
+            return
+        }
+
+        let anchor = AnchorEntity(.hand(self.realityKitModel.settingsOnRight ? .right : .left, location: .wrist), trackingMode: .continuous)
+        var transform = Transform()
+        // Place window above wrist
+        transform.translation.y = 0.1
+        anchor.transform = transform
+
+        anchor.addChild(attachment)
+
+        content.add(anchor)
+        self.wristAnchor = anchor
     }
 }
 

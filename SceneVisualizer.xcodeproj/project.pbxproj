@@ -17,6 +17,7 @@
 		6664437C2C02558600EEF8C5 /* WristSettingsTriggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664437B2C02558600EEF8C5 /* WristSettingsTriggerView.swift */; };
 		6664437F2C02561300EEF8C5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664437E2C02561300EEF8C5 /* SettingsView.swift */; };
 		666443812C02569F00EEF8C5 /* RealityKitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443802C02569F00EEF8C5 /* RealityKitModel.swift */; };
+		666443832C04ECF600EEF8C5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666443822C04ECF600EEF8C5 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		6664437B2C02558600EEF8C5 /* WristSettingsTriggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WristSettingsTriggerView.swift; sourceTree = "<group>"; };
 		6664437E2C02561300EEF8C5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		666443802C02569F00EEF8C5 /* RealityKitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealityKitModel.swift; sourceTree = "<group>"; };
+		666443822C04ECF600EEF8C5 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		666443762C00F23200EEF8C5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				666443822C04ECF600EEF8C5 /* Color.swift */,
 				666443772C00F26A00EEF8C5 /* GeometrySource.swift */,
 			);
 			path = Extensions;
@@ -189,6 +192,7 @@
 				666443632C00EAF200EEF8C5 /* SceneVisualizerApp.swift in Sources */,
 				666443782C00F26A00EEF8C5 /* GeometrySource.swift in Sources */,
 				666443672C00EAF200EEF8C5 /* ImmersiveView.swift in Sources */,
+				666443832C04ECF600EEF8C5 /* Color.swift in Sources */,
 				6664437C2C02558600EEF8C5 /* WristSettingsTriggerView.swift in Sources */,
 				666443752C00EB2500EEF8C5 /* ARKitModel.swift in Sources */,
 			);

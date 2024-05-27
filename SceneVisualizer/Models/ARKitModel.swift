@@ -35,7 +35,7 @@ import ARKit
 
     private var cachedSettings: RealityKitModel?
 
-    func start() async {
+    func start(_ model: RealityKitModel) async {
         guard SceneReconstructionProvider.isSupported else {
             print("SceneReconstructionProvider not supported.")
             return
@@ -51,6 +51,8 @@ import ARKit
             try await self.arSession.run([self.sceneReconstructionProvider])
             print("Started ARKit")
 
+            self.updateProximityMaterialProperties(model)
+
             for await update in self.sceneReconstructionProvider.anchorUpdates {
                 if Task.isCancelled {
                     print("Quit ARKit task")
@@ -62,14 +64,6 @@ import ARKit
             }
         } catch {
             print("ARKit error \(error)")
-        }
-    }
-
-    func updateScene(material: Material) {
-        self.activeShaderMaterial = material
-
-        for pair in self.meshEntities.values {
-            pair.primaryEntity.model?.materials = [material]
         }
     }
 

@@ -13,10 +13,12 @@ struct SceneVisualizerApp: App {
 
     var body: some Scene {
         WindowGroup(id: "main") {
-//            let _ = print($id.wrappedValue)
             SettingsView(id: "foo", realityKitModel: self.$realityKitModel)
+                .frame(width: 600, height: 780)
         }
         .handlesExternalEvents(matching: [])
+        .defaultSize(width: 600, height: 780)
+        .windowResizability(.contentSize)
 
         ImmersiveSpace(id: "ImmersiveSpace") {
             ImmersiveView(realityKitModel: self.$realityKitModel)
