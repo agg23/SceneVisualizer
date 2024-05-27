@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Clear.png",
       "idiom" : "vision",
       "scale" : "2x"
     }

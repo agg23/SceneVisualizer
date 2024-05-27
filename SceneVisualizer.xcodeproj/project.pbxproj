@@ -49,7 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				6664435D2C00EAF200EEF8C5 /* SceneVisualizer */,
-				6664435E2C00EAF200EEF8C5 /* Packages */,
 				6664435C2C00EAF200EEF8C5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,13 +75,6 @@
 				6664436A2C00EAF300EEF8C5 /* Preview Content */,
 			);
 			path = SceneVisualizer;
-			sourceTree = "<group>";
-		};
-		6664435E2C00EAF200EEF8C5 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Packages;
 			sourceTree = "<group>";
 		};
 		6664436A2C00EAF300EEF8C5 /* Preview Content */ = {

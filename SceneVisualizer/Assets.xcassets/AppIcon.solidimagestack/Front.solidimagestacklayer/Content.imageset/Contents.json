@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Top.png",
       "idiom" : "vision",
       "scale" : "2x"
     }
